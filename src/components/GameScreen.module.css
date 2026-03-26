@@ -9,17 +9,17 @@
 
 .header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 4px 4px 10px;
+  padding: 6px 4px 12px;
 }
 
 .logo {
   display: block;
-  width: min(134px, 42vw);
+  width: min(108px, 30vw);
   height: auto;
-  max-height: 20px;
+  max-height: 92px;
   object-fit: contain;
 }
 
