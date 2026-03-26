@@ -1,7 +1,6 @@
 import { useAnimatedNumber } from '../hooks/useAnimatedNumber'
-import type { CardInstance, Side } from '../game/types'
+import type { Side } from '../game/types'
 import { BattleIcon } from './BattleIcon'
-import { Card } from './Card'
 import styles from './ScoreBoard.module.css'
 
 interface ScoreBoardProps {
@@ -11,13 +10,10 @@ interface ScoreBoardProps {
   aiDeckCount: number
   playerHandCount: number
   aiHandCount: number
-  playerBonusCard: CardInstance | null
-  aiBonusCard: CardInstance | null
   playerBonusUsed: boolean
   aiBonusUsed: boolean
+  hasBonusCardRule: boolean
   activePlayer: Side
-  onPlayerBonusSelect: (card: CardInstance) => void
-  onAiBonusSelect: (card: CardInstance) => void
 }
 
 export function ScoreBoard({
@@ -27,13 +23,10 @@ export function ScoreBoard({
   aiDeckCount,
   playerHandCount,
   aiHandCount,
-  playerBonusCard,
-  aiBonusCard,
   playerBonusUsed,
   aiBonusUsed,
+  hasBonusCardRule,
   activePlayer,
-  onPlayerBonusSelect,
-  onAiBonusSelect,
 }: ScoreBoardProps) {
   const animatedPlayerScore = useAnimatedNumber(playerScore)
   const animatedAiScore = useAnimatedNumber(aiScore)
@@ -54,19 +47,9 @@ export function ScoreBoard({
             {aiDeckCount}
           </span>
         </div>
-        <div className={styles.bonusArea}>
-          <p className={styles.bonusLabel}>Bonus</p>
-          {aiBonusCard ? (
-            <Card
-              card={aiBonusCard}
-              variant="bonus"
-              disabled={aiBonusUsed}
-              onClick={() => onAiBonusSelect(aiBonusCard)}
-            />
-          ) : (
-            <div className={styles.bonusPlaceholder}>{aiBonusUsed ? 'Used' : 'Ready'}</div>
-          )}
-        </div>
+        {hasBonusCardRule ? (
+          <p className={styles.bonusStatus}>{aiBonusUsed ? 'Bonus used' : 'Bonus ready'}</p>
+        ) : null}
       </article>
 
       <div className={styles.total}>
@@ -92,19 +75,9 @@ export function ScoreBoard({
             {playerDeckCount}
           </span>
         </div>
-        <div className={styles.bonusArea}>
-          <p className={styles.bonusLabel}>Bonus</p>
-          {playerBonusCard ? (
-            <Card
-              card={playerBonusCard}
-              variant="bonus"
-              disabled={playerBonusUsed}
-              onClick={() => onPlayerBonusSelect(playerBonusCard)}
-            />
-          ) : (
-            <div className={styles.bonusPlaceholder}>{playerBonusUsed ? 'Used' : 'Ready'}</div>
-          )}
-        </div>
+        {hasBonusCardRule ? (
+          <p className={styles.bonusStatus}>{playerBonusUsed ? 'Bonus used' : 'Bonus ready'}</p>
+        ) : null}
       </article>
     </section>
   )

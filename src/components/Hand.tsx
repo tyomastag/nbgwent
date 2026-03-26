@@ -4,14 +4,26 @@ import type { CardInstance } from '../game/types'
 import styles from './Hand.module.css'
 
 interface HandProps {
+  bonusCard: CardInstance | null
+  bonusUsed: boolean
   cards: CardInstance[]
   highlightIds: string[]
   selectedCardId: string | null
   disabled: boolean
   onCardSelect: (card: CardInstance) => void
+  onBonusSelect: (card: CardInstance) => void
 }
 
-export function Hand({ cards, highlightIds, selectedCardId, disabled, onCardSelect }: HandProps) {
+export function Hand({
+  bonusCard,
+  bonusUsed,
+  cards,
+  highlightIds,
+  selectedCardId,
+  disabled,
+  onCardSelect,
+  onBonusSelect,
+}: HandProps) {
   return (
     <section className={styles.hand}>
       <div className={styles.header}>
@@ -26,18 +38,37 @@ export function Hand({ cards, highlightIds, selectedCardId, disabled, onCardSele
       </div>
 
       <div className={styles.list}>
-        {cards.map((card, index) => (
-          <Card
-            key={card.instanceId}
-            card={card}
-            variant="hand"
-            disabled={disabled}
-            selected={selectedCardId === card.instanceId}
-            highlighted={highlightIds.includes(card.instanceId)}
-            style={{ animationDelay: `${index * 40}ms` }}
-            onClick={() => onCardSelect(card)}
-          />
-        ))}
+        {bonusCard || bonusUsed ? (
+          <div className={styles.bonusLead}>
+            {bonusCard ? (
+              <Card
+                card={bonusCard}
+                variant="bonus"
+                disabled={disabled || bonusUsed}
+                selected={selectedCardId === bonusCard.instanceId}
+                highlighted={highlightIds.includes(bonusCard.instanceId)}
+                onClick={() => onBonusSelect(bonusCard)}
+              />
+            ) : (
+              <div className={styles.usedSlot}>Used</div>
+            )}
+          </div>
+        ) : null}
+
+        <div className={styles.cardsTrack}>
+          {cards.map((card, index) => (
+            <Card
+              key={card.instanceId}
+              card={card}
+              variant="hand"
+              disabled={disabled}
+              selected={selectedCardId === card.instanceId}
+              highlighted={highlightIds.includes(card.instanceId)}
+              style={{ animationDelay: `${index * 40}ms` }}
+              onClick={() => onCardSelect(card)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

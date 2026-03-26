@@ -132,6 +132,9 @@ export function GameScreen({ cards }: GameScreenProps) {
   const canPlayerAct =
     state.phase === 'playing' && state.activePlayer === 'player' && !state.player.passed
   const playerBonusReady = Boolean(state.player.bonusCard && !state.player.bonusUsed)
+  const hasBonusCardRule = Boolean(
+    state.player.bonusCard || state.ai.bonusCard || state.player.bonusUsed || state.ai.bonusUsed,
+  )
 
   const centerTitle =
     state.phase === 'match_over'
@@ -208,13 +211,10 @@ export function GameScreen({ cards }: GameScreenProps) {
           aiDeckCount={state.ai.deck.length}
           playerHandCount={state.player.hand.length}
           aiHandCount={state.ai.hand.length}
-          playerBonusCard={state.player.bonusCard}
-          aiBonusCard={state.ai.bonusCard}
           playerBonusUsed={state.player.bonusUsed}
           aiBonusUsed={state.ai.bonusUsed}
+          hasBonusCardRule={hasBonusCardRule}
           activePlayer={state.activePlayer}
-          onPlayerBonusSelect={(card) => openCard(card, 'playerBonus')}
-          onAiBonusSelect={(card) => openCard(card, 'aiBonus')}
         />
 
         <RoundTracker
@@ -277,11 +277,18 @@ export function GameScreen({ cards }: GameScreenProps) {
       </section>
 
       <Hand
+        bonusCard={state.player.bonusCard}
+        bonusUsed={state.player.bonusUsed}
         cards={state.player.hand}
         highlightIds={state.highlightIds}
-        selectedCardId={selectedCardState?.target === 'playerHand' ? selectedCardState.instanceId : null}
+        selectedCardId={
+          selectedCardState?.target === 'playerHand' || selectedCardState?.target === 'playerBonus'
+            ? selectedCardState.instanceId
+            : null
+        }
         disabled={!canPlayerAct}
         onCardSelect={(card) => openCard(card, 'playerHand')}
+        onBonusSelect={(card) => openCard(card, 'playerBonus')}
       />
 
       <PassButton
