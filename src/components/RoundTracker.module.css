@@ -6,6 +6,9 @@
   padding: 6px 8px;
   border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
+  background: var(--text-veil);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
 }
 
 .roundMark {

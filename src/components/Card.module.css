@@ -48,9 +48,9 @@
 }
 
 .bonus {
-  width: 68px;
-  height: 128px;
-  flex: 0 0 68px;
+  width: 98px;
+  height: 198px;
+  flex: 0 0 98px;
   animation: boardCardIn 220ms ease-out both;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .bonus .media {
-  height: 76px;
+  height: 122px;
 }
 
 .modal .media {
@@ -181,11 +181,11 @@
 }
 
 .bonus .powerBadge {
-  top: 5px;
-  left: 5px;
-  min-width: 24px;
-  height: 24px;
-  font-size: 0.8rem;
+  top: 6px;
+  left: 6px;
+  min-width: 28px;
+  height: 28px;
+  font-size: 0.92rem;
 }
 
 .content {
@@ -308,8 +308,8 @@
 }
 
 .bonus .content {
-  padding: 5px 5px 6px;
-  gap: 3px;
+  padding: 7px 7px 8px;
+  gap: 5px;
 }
 
 .board .name {
@@ -317,7 +317,7 @@
 }
 
 .bonus .name {
-  font-size: 0.49rem;
+  font-size: 0.74rem;
 }
 
 .board .title {
@@ -325,17 +325,12 @@
 }
 
 .bonus .title {
-  font-size: 0.4rem;
+  font-size: 0.56rem;
 }
 
 .board .ability {
   font-size: 0.52rem;
   -webkit-line-clamp: 1;
-}
-
-.bonus .ability,
-.bonus .tag {
-  display: none;
 }
 
 .board .tag {
@@ -347,14 +342,30 @@
 }
 
 .bonus .footer {
-  min-height: 10px;
+  min-height: 14px;
 }
 
-.bonus .metaIcon,
+.bonus .metaIcon {
+  width: 14px;
+  height: 14px;
+  flex-basis: 14px;
+}
+
 .bonus .rarityBadge {
-  width: 12px;
-  height: 12px;
-  flex-basis: 12px;
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+
+.bonus .ability {
+  font-size: 0.58rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.bonus .tag {
+  display: inline-flex;
 }
 
 .modal .content {

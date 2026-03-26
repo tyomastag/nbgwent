@@ -15,7 +15,11 @@
   gap: 8px;
   align-items: start;
   margin-bottom: 6px;
-  padding: 0 2px;
+  padding: 8px 10px;
+  border: 1px solid rgba(240, 232, 214, 0.1);
+  border-radius: 12px;
+  background: var(--text-veil);
+  backdrop-filter: blur(4px);
 }
 
 .labelGroup {
@@ -70,8 +74,9 @@
   align-items: center;
   justify-content: center;
   border: 1px dashed rgba(240, 232, 214, 0.14);
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-align: center;
   font-size: 0.74rem;
   letter-spacing: 0.03em;
+  background: var(--text-veil);
 }

@@ -219,11 +219,6 @@ export function GameScreen({ cards }: GameScreenProps) {
           playerWins={state.player.roundWins}
           aiWins={state.ai.roundWins}
         />
-
-        <div className={styles.helpStrip}>
-          <span>Higher total wins the round</span>
-          <span>Lord Artūrs is a one-time side bonus</span>
-        </div>
       </div>
 
       <section className={styles.boardStack}>

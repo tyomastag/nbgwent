@@ -28,22 +28,6 @@
   gap: 5px;
 }
 
-.helpStrip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-
-.helpStrip span {
-  padding: 5px 6px;
-  border: 1px solid rgba(240, 232, 214, 0.1);
-  border-radius: 8px;
-  color: var(--text-secondary);
-  font-size: 0.6rem;
-  line-height: 1.25;
-  text-align: center;
-}
-
 .boardStack {
   display: grid;
   gap: 5px;
@@ -60,7 +44,9 @@
   border-bottom: 1px solid var(--border-strong);
   background:
     linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03) 14%, rgba(255, 255, 255, 0.03) 86%, transparent),
-    rgba(255, 255, 255, 0.01);
+    var(--text-veil);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
 }
 
 .turnLabel {
@@ -109,6 +95,9 @@
   text-align: center;
   text-transform: uppercase;
   animation: bannerIn 220ms ease-out;
+  background: var(--text-veil-strong);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
 }
 
 @keyframes bannerIn {
