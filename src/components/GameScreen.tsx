@@ -195,7 +195,7 @@ export function GameScreen({ cards }: GameScreenProps) {
       <header className={styles.header}>
         <img
           className={styles.logo}
-          src="/images/NBGWENT.svg"
+          src="/images/NBGwent_2.svg"
           alt="NBGwent"
         />
       </header>
