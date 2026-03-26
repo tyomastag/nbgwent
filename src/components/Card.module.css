@@ -1,5 +1,7 @@
 .card {
   position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
   border: 2px solid #13110d;
   border-radius: 10px;
   padding: 0;
@@ -32,22 +34,23 @@
 
 .hand {
   width: 98px;
+  height: 188px;
   flex: 0 0 98px;
-  min-height: 168px;
   animation: cardEnter 260ms ease-out both;
   z-index: 1;
 }
 
 .board {
   width: 88px;
+  height: 164px;
   flex: 0 0 88px;
-  min-height: 148px;
   animation: boardCardIn 220ms ease-out both;
 }
 
 .modal {
   width: min(100%, 320px);
-  min-height: 440px;
+  min-height: 462px;
+  max-height: min(88vh, 540px);
   cursor: default;
 }
 
@@ -85,10 +88,21 @@
 
 .media {
   position: relative;
-  aspect-ratio: 0.9;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(19, 17, 13, 0.1), rgba(19, 17, 13, 0.02));
   border-bottom: 2px solid #13110d;
+}
+
+.hand .media {
+  height: 86px;
+}
+
+.board .media {
+  height: 74px;
+}
+
+.modal .media {
+  height: 188px;
 }
 
 .image {
@@ -144,74 +158,125 @@
 
 .content {
   display: grid;
-  gap: 6px;
-  padding: 8px 8px 9px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 5px;
+  padding: 7px 7px 8px;
+  min-height: 0;
 }
 
 .headline {
   display: flex;
   justify-content: space-between;
-  gap: 6px;
+  gap: 5px;
   align-items: start;
+  min-height: 0;
+}
+
+.titleBlock {
+  min-width: 0;
 }
 
 .name {
   margin: 0;
   font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   line-height: 1.05;
   text-transform: uppercase;
+  word-break: break-word;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  min-width: 0;
 }
 
 .title {
-  margin: 2px 0 0;
+  margin: 0;
   color: var(--ink-soft);
-  font-size: 0.58rem;
-  line-height: 1.2;
+  font-size: 0.56rem;
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.rarity {
+.metaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
   color: var(--ink-soft);
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+}
+
+.rarityBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: var(--ink-soft);
 }
 
 .ability {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.62rem;
-  line-height: 1.25;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  font-size: 0.58rem;
+  line-height: 1.2;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 4px;
+  min-height: 14px;
+}
+
+.iconTrail {
+  display: inline-flex;
+  gap: 4px;
 }
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  flex-wrap: nowrap;
+  gap: 3px;
+  min-width: 0;
+  justify-content: end;
 }
 
 .tag {
-  padding: 2px 5px;
+  max-width: 100%;
+  padding: 2px 4px;
   border-radius: 999px;
   border: 1px solid rgba(19, 17, 13, 0.14);
   color: var(--ink-soft);
-  font-size: 0.5rem;
-  letter-spacing: 0.06em;
+  font-size: 0.47rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .board .content {
-  gap: 4px;
   padding: 6px 6px 7px;
+  gap: 4px;
 }
 
 .board .name {
-  font-size: 0.64rem;
+  font-size: 0.61rem;
 }
 
 .board .title {
@@ -219,12 +284,48 @@
 }
 
 .board .ability {
+  font-size: 0.52rem;
   -webkit-line-clamp: 2;
-  font-size: 0.56rem;
 }
 
-.board .tags {
+.board .tag {
   display: none;
+}
+
+.board .footer {
+  min-height: 12px;
+}
+
+.modal .content {
+  gap: 9px;
+  padding: 12px 12px 14px;
+}
+
+.modal .name {
+  font-size: 1.08rem;
+}
+
+.modal .title {
+  font-size: 0.76rem;
+  white-space: normal;
+}
+
+.modal .metaIcon,
+.modal .rarityBadge {
+  width: 18px;
+  height: 18px;
+  flex-basis: 18px;
+}
+
+.modal .ability {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  -webkit-line-clamp: 5;
+}
+
+.modal .tag {
+  font-size: 0.58rem;
+  padding: 4px 6px;
 }
 
 @keyframes cardEnter {

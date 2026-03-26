@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
+import { CardGlyph } from './CardGlyph'
 import type { CardDefinition } from '../types/cards'
 import styles from './Card.module.css'
 
@@ -33,6 +34,7 @@ export function Card({
   const [imageFailed, setImageFailed] = useState(false)
   const power = card.currentPower ?? card.power
   const isInteractive = Boolean(onClick)
+  const isModal = variant === 'modal'
 
   return (
     <button
@@ -72,21 +74,39 @@ export function Card({
 
       <div className={styles.content}>
         <div className={styles.headline}>
-          <div>
+          <div className={styles.titleBlock}>
             <p className={styles.name}>{card.name}</p>
-            <p className={styles.title}>{card.title}</p>
+            <div className={styles.metaRow}>
+              <span className={styles.metaIcon}>
+                <CardGlyph kind="role" value={card.title} title={card.title} />
+              </span>
+              <p className={styles.title}>{card.title}</p>
+            </div>
           </div>
-          <span className={styles.rarity}>{card.rarity}</span>
+          <span className={styles.rarityBadge} title={card.rarity}>
+            <CardGlyph kind="rarity" value={card.rarity} title={card.rarity} />
+          </span>
         </div>
 
         <p className={styles.ability}>{card.abilityText}</p>
 
-        <div className={styles.tags}>
-          {card.tags.slice(0, variant === 'board' ? 1 : 2).map((tag) => (
-            <span key={`${card.id}-${tag}`} className={styles.tag}>
-              {tag}
+        <div className={styles.footer}>
+          <div className={styles.iconTrail}>
+            <span className={styles.metaIcon}>
+              <CardGlyph kind="ability" value={card.abilityType} title={card.abilityText} />
             </span>
-          ))}
+            <span className={styles.metaIcon}>
+              <CardGlyph kind="rarity" value={card.rarity} title={card.rarity} />
+            </span>
+          </div>
+
+          <div className={styles.tags}>
+            {card.tags.slice(0, isModal ? 2 : 1).map((tag) => (
+              <span key={`${card.id}-${tag}`} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </button>
