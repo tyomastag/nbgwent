@@ -88,27 +88,34 @@
 
 .media {
   position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(19, 17, 13, 0.1), rgba(19, 17, 13, 0.02));
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 58%),
+    linear-gradient(180deg, rgba(19, 17, 13, 0.1), rgba(19, 17, 13, 0.02));
   border-bottom: 2px solid #13110d;
 }
 
 .hand .media {
-  height: 86px;
+  height: 102px;
 }
 
 .board .media {
-  height: 74px;
+  height: 92px;
 }
 
 .modal .media {
-  height: 188px;
+  height: 230px;
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 0 4px;
   filter: grayscale(1) contrast(1.05);
 }
 
@@ -320,7 +327,7 @@
 .modal .ability {
   font-size: 0.8rem;
   line-height: 1.4;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
 }
 
 .modal .tag {
