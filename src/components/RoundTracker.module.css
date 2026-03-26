@@ -2,18 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
+  gap: 8px;
+  padding: 6px 8px;
   border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
+}
+
+.roundMark {
+  display: grid;
+  gap: 2px;
 }
 
 .label {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.58rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
+  min-height: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .value {
@@ -52,10 +57,15 @@
 
 .legend {
   display: grid;
-  gap: 2px;
+  gap: 3px;
   text-align: right;
   color: var(--text-secondary);
   font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+}
+
+.legend span {
+  display: inline-flex;
+  justify-content: end;
+  align-items: center;
+  gap: 4px;
 }

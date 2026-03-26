@@ -1,29 +1,22 @@
 .hand {
   display: grid;
-  gap: 8px;
-  padding-top: 2px;
+  gap: 6px;
+  padding-top: 0;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  align-items: end;
+  gap: 8px;
+  align-items: center;
 }
 
 .label {
   margin: 0;
-  font-family: 'Cinzel', serif;
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
   color: var(--text-primary);
-}
-
-.copy {
-  margin: 3px 0 0;
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .count {
@@ -38,7 +31,7 @@
   align-items: end;
   gap: 0;
   overflow-x: auto;
-  padding: 8px 12px 10px 6px;
+  padding: 4px 10px 8px 4px;
   scrollbar-width: none;
 }
 

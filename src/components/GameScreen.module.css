@@ -2,9 +2,9 @@
   position: relative;
   width: min(100%, 430px);
   margin: 0 auto;
-  padding: 6px 4px 16px;
+  padding: 4px 4px 10px;
   display: grid;
-  gap: 10px;
+  gap: 6px;
 }
 
 .screen::before {
@@ -19,53 +19,48 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
-  gap: 10px;
-  padding: 6px 4px 0;
-}
-
-.kicker {
-  margin: 0 0 2px;
-  color: var(--text-muted);
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 0;
 }
 
 .title {
   margin: 0;
   font-family: 'Cinzel', 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   line-height: 0.95;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .meta {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .hud {
   display: grid;
-  gap: 8px;
+  gap: 5px;
 }
 
 .boardStack {
   display: grid;
-  gap: 8px;
+  gap: 5px;
 }
 
 .centerLane {
   display: grid;
-  gap: 8px;
+  gap: 4px;
 }
 
 .turnPanel {
-  padding: 10px 12px;
+  padding: 7px 8px;
   border-top: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
   background:
@@ -76,25 +71,28 @@
 .turnLabel {
   margin: 0;
   font-family: 'Cinzel', serif;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .turnCopy {
-  margin: 4px 0 0;
+  margin: 3px 0 0;
   color: var(--text-secondary);
-  font-size: 0.77rem;
-  line-height: 1.4;
+  font-size: 0.69rem;
+  line-height: 1.28;
 }
 
 .roundBanner {
-  padding: 8px 10px;
+  padding: 5px 8px;
   border-left: 1px solid var(--border-strong);
   border-right: 1px solid var(--border-strong);
   color: var(--text-primary);
   font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-align: center;
   text-transform: uppercase;

@@ -1,3 +1,4 @@
+import { BattleIcon } from './BattleIcon'
 import { Card } from './Card'
 import type { CardInstance } from '../game/types'
 import styles from './Hand.module.css'
@@ -14,10 +15,10 @@ export function Hand({ cards, highlightIds, selectedCardId, disabled, onCardSele
   return (
     <section className={styles.hand}>
       <div className={styles.header}>
-        <div>
-          <p className={styles.label}>Your Hand</p>
-          <p className={styles.copy}>Tap a card to open its preview and play button.</p>
-        </div>
+        <p className={styles.label}>
+          <BattleIcon name="player" title="Player" size={14} />
+          <BattleIcon name="hand" title="Hand" size={14} />
+        </p>
         <p className={styles.count}>{cards.length}</p>
       </div>
 

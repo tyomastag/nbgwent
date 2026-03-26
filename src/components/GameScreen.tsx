@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react'
+import { BattleIcon } from './BattleIcon'
 import { ActionLog } from './ActionLog'
 import { BoardRow } from './BoardRow'
 import { CardModal } from './CardModal'
@@ -169,11 +170,11 @@ export function GameScreen({ cards }: GameScreenProps) {
   return (
     <section className={styles.screen}>
       <header className={styles.header}>
-        <div>
-          <p className={styles.kicker}>Internal Card League</p>
-          <h1 className={styles.title}>NBGwent</h1>
-        </div>
-        <p className={styles.meta}>Best of {MAX_ROUNDS} rounds</p>
+        <h1 className={styles.title}>NBGwent</h1>
+        <p className={styles.meta}>
+          <BattleIcon name="round" title={`Best of ${MAX_ROUNDS} rounds`} size={12} />
+          {MAX_ROUNDS}
+        </p>
       </header>
 
       <div className={styles.hud}>
@@ -196,8 +197,9 @@ export function GameScreen({ cards }: GameScreenProps) {
 
       <section className={styles.boardStack}>
         <BoardRow
-          label="Opponent Board"
-          subtitle={`AI hand ${state.ai.hand.length} • discard ${state.ai.discard.length}`}
+          side="ai"
+          handCount={state.ai.hand.length}
+          discardCount={state.ai.discard.length}
           cards={state.ai.board}
           highlightIds={state.highlightIds}
           onCardSelect={(card) => openCard(card, 'aiBoard')}
@@ -207,7 +209,10 @@ export function GameScreen({ cards }: GameScreenProps) {
 
         <div className={styles.centerLane}>
           <div className={styles.turnPanel}>
-            <p className={styles.turnLabel}>{centerTitle}</p>
+            <p className={styles.turnLabel}>
+              <BattleIcon name="turn" title={centerTitle} size={14} />
+              {centerTitle}
+            </p>
             <p className={styles.turnCopy}>{centerSubtitle}</p>
           </div>
 
@@ -219,8 +224,9 @@ export function GameScreen({ cards }: GameScreenProps) {
         </div>
 
         <BoardRow
-          label="Your Board"
-          subtitle={`Your hand ${state.player.hand.length} • discard ${state.player.discard.length}`}
+          side="player"
+          handCount={state.player.hand.length}
+          discardCount={state.player.discard.length}
           cards={state.player.board}
           highlightIds={state.highlightIds}
           onCardSelect={(card) => openCard(card, 'playerBoard')}

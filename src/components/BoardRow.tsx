@@ -1,10 +1,12 @@
+import { BattleIcon } from './BattleIcon'
 import { Card } from './Card'
 import type { CardInstance } from '../game/types'
 import styles from './BoardRow.module.css'
 
 interface BoardRowProps {
-  label: string
-  subtitle: string
+  side: 'player' | 'ai'
+  handCount: number
+  discardCount: number
   cards: CardInstance[]
   highlightIds: string[]
   emptyState: string
@@ -13,8 +15,9 @@ interface BoardRowProps {
 }
 
 export function BoardRow({
-  label,
-  subtitle,
+  side,
+  handCount,
+  discardCount,
   cards,
   highlightIds,
   emptyState,
@@ -24,9 +27,25 @@ export function BoardRow({
   return (
     <section className={`${styles.row} ${alignment === 'top' ? styles.top : styles.bottom}`}>
       <div className={styles.header}>
-        <div>
-          <p className={styles.label}>{label}</p>
-          <p className={styles.subtitle}>{subtitle}</p>
+        <div className={styles.labelGroup}>
+          <p className={styles.label}>
+            <BattleIcon
+              name={side === 'player' ? 'player' : 'opponent'}
+              title={side === 'player' ? 'Player board' : 'Opponent board'}
+              size={14}
+            />
+            <BattleIcon name="board" title="Board" size={14} />
+          </p>
+          <p className={styles.subtitle}>
+            <span title="Cards in hand">
+              <BattleIcon name="hand" size={12} />
+              {handCount}
+            </span>
+            <span title="Discard pile">
+              <BattleIcon name="deck" size={12} />
+              {discardCount}
+            </span>
+          </p>
         </div>
         <p className={styles.count}>{cards.length}</p>
       </div>

@@ -1,6 +1,6 @@
 .button {
   width: 100%;
-  min-height: 48px;
+  min-height: 44px;
   border: 1px solid var(--border-strong);
   border-radius: 10px;
   background:
@@ -8,10 +8,14 @@
     rgba(8, 8, 8, 0.98);
   color: var(--text-primary);
   font-family: 'Cinzel', serif;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease;
 }
 

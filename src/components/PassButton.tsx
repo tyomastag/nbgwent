@@ -1,3 +1,4 @@
+import { BattleIcon } from './BattleIcon'
 import styles from './PassButton.module.css'
 
 interface PassButtonProps {
@@ -14,7 +15,8 @@ export function PassButton({ disabled, passed, onClick }: PassButtonProps) {
       disabled={disabled || passed}
       onClick={onClick}
     >
-      {passed ? 'Passed' : 'Pass'}
+      <BattleIcon name="pass" title={passed ? 'Passed' : 'Pass'} size={15} />
+      <span>{passed ? 'Passed' : 'Pass'}</span>
     </button>
   )
 }

@@ -1,5 +1,6 @@
 import { useAnimatedNumber } from '../hooks/useAnimatedNumber'
 import type { Side } from '../game/types'
+import { BattleIcon } from './BattleIcon'
 import styles from './ScoreBoard.module.css'
 
 interface ScoreBoardProps {
@@ -23,32 +24,60 @@ export function ScoreBoard({
 }: ScoreBoardProps) {
   const animatedPlayerScore = useAnimatedNumber(playerScore)
   const animatedAiScore = useAnimatedNumber(aiScore)
-  const activeLabel = activePlayer === 'player' ? 'Player initiative' : 'AI initiative'
 
   return (
     <section className={styles.board}>
       <article className={`${styles.side} ${activePlayer === 'ai' ? styles.active : ''}`}>
-        <p className={styles.label}>Opponent</p>
+        <p className={styles.label}>
+          <BattleIcon name="opponent" title="Opponent" />
+        </p>
         <p className={styles.score}>{animatedAiScore}</p>
-        <p className={styles.meta}>H {aiHandCount}</p>
-        <p className={styles.meta}>D {aiDeckCount}</p>
+        <div className={styles.metaRow}>
+          <span className={styles.meta} title="Cards in hand">
+            <BattleIcon name="hand" title="Cards in hand" size={13} />
+            {aiHandCount}
+          </span>
+          <span className={styles.meta} title="Cards in deck">
+            <BattleIcon name="deck" title="Cards in deck" size={13} />
+            {aiDeckCount}
+          </span>
+        </div>
       </article>
 
       <div className={styles.total}>
-        <p className={styles.totalLabel}>Total</p>
+        <p className={styles.totalLabel}>
+          <BattleIcon name="board" title="Battle total" size={14} />
+        </p>
         <div className={styles.totalScore}>
           <span>{animatedAiScore}</span>
           <span className={styles.totalDivider}>/</span>
           <span>{animatedPlayerScore}</span>
         </div>
-        <p className={styles.totalMeta}>{activeLabel}</p>
+        <p className={styles.totalMeta}>
+          <BattleIcon
+            name="initiative"
+            title={activePlayer === 'player' ? 'Player initiative' : 'AI initiative'}
+            size={13}
+          />
+          <BattleIcon name={activePlayer === 'player' ? 'player' : 'opponent'} size={13} />
+        </p>
       </div>
 
       <article className={`${styles.side} ${activePlayer === 'player' ? styles.active : ''}`}>
-        <p className={styles.label}>You</p>
+        <p className={styles.label}>
+          <BattleIcon name="player" title="Player" />
+        </p>
         <p className={styles.score}>{animatedPlayerScore}</p>
-        <p className={styles.meta}>H {playerHandCount}</p>
-        <p className={styles.meta}>D {playerDeckCount}</p>
+        <div className={styles.metaRow}>
+          <span className={styles.meta} title="Cards in hand">
+            <BattleIcon name="hand" title="Cards in hand" size={13} />
+            {playerHandCount}
+          </span>
+          <span className={styles.meta} title="Cards in deck">
+            <BattleIcon name="deck" title="Cards in deck" size={13} />
+            {playerDeckCount}
+          </span>
+        </div>
       </article>
     </section>
   )
