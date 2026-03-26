@@ -9,7 +9,7 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
   padding: 4px 4px 10px;
@@ -21,17 +21,6 @@
   height: auto;
   max-height: 20px;
   object-fit: contain;
-}
-
-.meta {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
 }
 
 .hud {

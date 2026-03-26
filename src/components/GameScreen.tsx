@@ -198,9 +198,6 @@ export function GameScreen({ cards }: GameScreenProps) {
           src="/images/NBGWENT.svg"
           alt="NBGwent"
         />
-        <p className={styles.meta}>
-          First to 2 rounds
-        </p>
       </header>
 
       <div className={styles.hud}>
@@ -257,8 +254,6 @@ export function GameScreen({ cards }: GameScreenProps) {
             </div>
           </div>
 
-          <ActionLog entries={state.logs} />
-
           {state.phase === 'round_end' && state.roundBanner ? (
             <div className={styles.roundBanner}>{state.roundBanner}</div>
           ) : null}
@@ -290,6 +285,8 @@ export function GameScreen({ cards }: GameScreenProps) {
         onCardSelect={(card) => openCard(card, 'playerHand')}
         onBonusSelect={(card) => openCard(card, 'playerBonus')}
       />
+
+      <ActionLog entries={state.logs} />
 
       <PassButton
         disabled={!canPlayerAct}
