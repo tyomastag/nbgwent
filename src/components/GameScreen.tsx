@@ -176,21 +176,23 @@ export function GameScreen({ cards }: GameScreenProps) {
         <p className={styles.meta}>Best of {MAX_ROUNDS} rounds</p>
       </header>
 
-      <ScoreBoard
-        playerScore={state.player.score}
-        aiScore={state.ai.score}
-        playerDeckCount={state.player.deck.length}
-        aiDeckCount={state.ai.deck.length}
-        playerHandCount={state.player.hand.length}
-        aiHandCount={state.ai.hand.length}
-        activePlayer={state.activePlayer}
-      />
+      <div className={styles.hud}>
+        <ScoreBoard
+          playerScore={state.player.score}
+          aiScore={state.ai.score}
+          playerDeckCount={state.player.deck.length}
+          aiDeckCount={state.ai.deck.length}
+          playerHandCount={state.player.hand.length}
+          aiHandCount={state.ai.hand.length}
+          activePlayer={state.activePlayer}
+        />
 
-      <RoundTracker
-        currentRound={state.roundNumber}
-        playerWins={state.player.roundWins}
-        aiWins={state.ai.roundWins}
-      />
+        <RoundTracker
+          currentRound={state.roundNumber}
+          playerWins={state.player.roundWins}
+          aiWins={state.ai.roundWins}
+        />
+      </div>
 
       <section className={styles.boardStack}>
         <BoardRow

@@ -6,12 +6,14 @@ interface RoundTrackerProps {
   aiWins: number
 }
 
+const toRoman = (value: number) => ['I', 'II', 'III'][value - 1] ?? `${value}`
+
 export function RoundTracker({ currentRound, playerWins, aiWins }: RoundTrackerProps) {
   return (
     <section className={styles.tracker}>
       <div>
         <p className={styles.label}>Round</p>
-        <p className={styles.value}>0{currentRound}</p>
+        <p className={styles.value}>{toRoman(currentRound)}</p>
       </div>
 
       <div className={styles.pips} aria-label="Round wins">
@@ -33,7 +35,7 @@ export function RoundTracker({ currentRound, playerWins, aiWins }: RoundTrackerP
       </div>
 
       <div className={styles.legend}>
-        <span>You {playerWins}</span>
+        <span>Player {playerWins}</span>
         <span>AI {aiWins}</span>
       </div>
     </section>

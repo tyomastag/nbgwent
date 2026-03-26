@@ -23,21 +23,32 @@ export function ScoreBoard({
 }: ScoreBoardProps) {
   const animatedPlayerScore = useAnimatedNumber(playerScore)
   const animatedAiScore = useAnimatedNumber(aiScore)
+  const activeLabel = activePlayer === 'player' ? 'Player initiative' : 'AI initiative'
 
   return (
     <section className={styles.board}>
-      <article className={`${styles.panel} ${activePlayer === 'ai' ? styles.active : ''}`}>
-        <p className={styles.label}>AI</p>
+      <article className={`${styles.side} ${activePlayer === 'ai' ? styles.active : ''}`}>
+        <p className={styles.label}>Opponent</p>
         <p className={styles.score}>{animatedAiScore}</p>
-        <p className={styles.meta}>Hand {aiHandCount}</p>
-        <p className={styles.meta}>Deck {aiDeckCount}</p>
+        <p className={styles.meta}>H {aiHandCount}</p>
+        <p className={styles.meta}>D {aiDeckCount}</p>
       </article>
 
-      <article className={`${styles.panel} ${activePlayer === 'player' ? styles.active : ''}`}>
+      <div className={styles.total}>
+        <p className={styles.totalLabel}>Total</p>
+        <div className={styles.totalScore}>
+          <span>{animatedAiScore}</span>
+          <span className={styles.totalDivider}>/</span>
+          <span>{animatedPlayerScore}</span>
+        </div>
+        <p className={styles.totalMeta}>{activeLabel}</p>
+      </div>
+
+      <article className={`${styles.side} ${activePlayer === 'player' ? styles.active : ''}`}>
         <p className={styles.label}>You</p>
         <p className={styles.score}>{animatedPlayerScore}</p>
-        <p className={styles.meta}>Hand {playerHandCount}</p>
-        <p className={styles.meta}>Deck {playerDeckCount}</p>
+        <p className={styles.meta}>H {playerHandCount}</p>
+        <p className={styles.meta}>D {playerDeckCount}</p>
       </article>
     </section>
   )

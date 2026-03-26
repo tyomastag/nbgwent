@@ -1,90 +1,101 @@
 .card {
   position: relative;
-  border: 1px solid var(--border-soft);
-  border-radius: 22px;
+  border: 2px solid #13110d;
+  border-radius: 10px;
   padding: 0;
   overflow: hidden;
   text-align: left;
-  color: var(--text-primary);
+  color: var(--ink-strong);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 38%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    rgba(14, 15, 18, 0.96);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 24%),
+    linear-gradient(180deg, var(--parchment), var(--parchment-strong));
   box-shadow: var(--shadow-card);
   transition:
     transform 160ms ease,
     border-color 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(19, 17, 13, 0.14);
+  border-radius: 6px;
+  pointer-events: none;
 }
 
 .card[data-interactive='true']:active {
-  transform: scale(0.985);
+  transform: translateY(1px) scale(0.985);
 }
 
 .hand {
-  width: 156px;
-  flex: 0 0 156px;
-  min-height: 250px;
-  scroll-snap-align: start;
+  width: 98px;
+  flex: 0 0 98px;
+  min-height: 168px;
   animation: cardEnter 260ms ease-out both;
+  z-index: 1;
 }
 
 .board {
-  width: 114px;
-  flex: 0 0 114px;
-  min-height: 184px;
+  width: 88px;
+  flex: 0 0 88px;
+  min-height: 148px;
   animation: boardCardIn 220ms ease-out both;
 }
 
 .modal {
-  width: min(100%, 340px);
-  min-height: 470px;
+  width: min(100%, 320px);
+  min-height: 440px;
   cursor: default;
 }
 
 .common {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: #171510;
 }
 
 .rare {
-  border-color: rgba(193, 208, 223, 0.26);
+  border-color: #25211a;
 }
 
 .epic {
-  border-color: rgba(216, 210, 198, 0.34);
+  border-color: #352d1d;
 }
 
 .legendary {
-  border-color: rgba(231, 221, 175, 0.4);
+  border-color: #54462a;
 }
 
 .highlighted {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.24),
-    0 18px 34px rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+    0 0 0 1px rgba(239, 232, 215, 0.5),
+    0 10px 28px rgba(255, 244, 210, 0.16);
+  z-index: 5;
 }
 
 .selected {
-  border-color: rgba(255, 255, 255, 0.32);
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  z-index: 6;
 }
 
 .disabled {
-  opacity: 0.72;
+  opacity: 0.82;
 }
 
 .media {
   position: relative;
-  aspect-ratio: 0.88;
+  aspect-ratio: 0.9;
   overflow: hidden;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(180deg, rgba(19, 17, 13, 0.1), rgba(19, 17, 13, 0.02));
+  border-bottom: 2px solid #13110d;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
 }
 
 .fallback {
@@ -92,102 +103,134 @@
   height: 100%;
   display: grid;
   place-items: center;
-  padding: 14px;
+  padding: 10px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 52%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-  color: var(--text-primary);
+    radial-gradient(circle at top, rgba(0, 0, 0, 0.04), transparent 50%),
+    linear-gradient(160deg, rgba(19, 17, 13, 0.1), rgba(19, 17, 13, 0.04));
+  color: var(--ink-strong);
   text-align: center;
 }
 
 .initials {
-  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.35rem, 5vw, 2.2rem);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .fallbackTitle {
-  margin-top: 4px;
-  color: var(--text-secondary);
-  font-size: 0.82rem;
+  margin-top: 3px;
+  color: var(--ink-soft);
+  font-size: 0.64rem;
 }
 
 .powerBadge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  min-width: 42px;
-  height: 42px;
-  padding: 0 10px;
+  top: 6px;
+  left: 6px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
   display: grid;
   place-items: center;
+  border: 1px solid rgba(239, 232, 215, 0.4);
   border-radius: 999px;
-  background: rgba(3, 4, 6, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: 1.2rem;
+  background: rgba(9, 8, 7, 0.96);
+  color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
   font-weight: 700;
 }
 
 .content {
   display: grid;
-  gap: 10px;
-  padding: 12px;
+  gap: 6px;
+  padding: 8px 8px 9px;
 }
 
 .headline {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 6px;
   align-items: start;
 }
 
 .name {
   margin: 0;
-  font-size: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.05;
+  text-transform: uppercase;
 }
 
 .title {
-  margin: 4px 0 0;
-  color: var(--text-secondary);
-  font-size: 0.74rem;
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.58rem;
+  line-height: 1.2;
 }
 
 .rarity {
-  color: var(--text-muted);
-  font-size: 0.66rem;
+  color: var(--ink-soft);
+  font-size: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
 
 .ability {
   margin: 0;
-  color: var(--text-secondary);
-  font-size: 0.78rem;
-  line-height: 1.35;
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .tag {
-  padding: 4px 8px;
+  padding: 2px 5px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  font-size: 0.66rem;
+  border: 1px solid rgba(19, 17, 13, 0.14);
+  color: var(--ink-soft);
+  font-size: 0.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.board .content {
+  gap: 4px;
+  padding: 6px 6px 7px;
+}
+
+.board .name {
+  font-size: 0.64rem;
+}
+
+.board .title {
+  font-size: 0.5rem;
+}
+
+.board .ability {
+  -webkit-line-clamp: 2;
+  font-size: 0.56rem;
+}
+
+.board .tags {
+  display: none;
 }
 
 @keyframes cardEnter {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.96);
+    transform: translateY(12px) scale(0.96);
   }
 
   to {
@@ -199,7 +242,7 @@
 @keyframes boardCardIn {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.94);
+    transform: translateY(8px) scale(0.96);
   }
 
   to {

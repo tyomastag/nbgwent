@@ -1,44 +1,51 @@
 .hand {
   display: grid;
-  gap: 12px;
+  gap: 8px;
+  padding-top: 2px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   align-items: end;
 }
 
 .label {
   margin: 0;
-  font-size: 0.82rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
+  letter-spacing: 0.16em;
+  color: var(--text-primary);
 }
 
 .copy {
-  margin: 6px 0 0;
-  font-size: 0.84rem;
-  color: var(--text-secondary);
+  margin: 3px 0 0;
+  font-size: 0.7rem;
+  color: var(--text-muted);
 }
 
 .count {
   margin: 0;
-  font-size: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.96rem;
   font-weight: 700;
 }
 
 .list {
   display: flex;
-  gap: 12px;
+  align-items: end;
+  gap: 0;
   overflow-x: auto;
-  padding: 4px 1px 6px;
-  scroll-snap-type: x proximity;
+  padding: 8px 12px 10px 6px;
   scrollbar-width: none;
 }
 
 .list::-webkit-scrollbar {
   display: none;
+}
+
+.list > * + * {
+  margin-left: -26px;
 }

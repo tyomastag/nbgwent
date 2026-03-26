@@ -4,64 +4,71 @@
   z-index: 60;
   display: grid;
   place-items: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(12px);
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
 }
 
 .panel {
-  width: min(100%, 360px);
-  padding: 28px 24px;
-  border-radius: 28px;
+  width: min(100%, 340px);
+  padding: 22px 18px;
+  border-radius: 14px;
   border: 1px solid var(--border-strong);
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 44%),
-    rgba(10, 11, 14, 0.96);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(8, 8, 8, 0.98);
   box-shadow: var(--shadow-soft);
   text-align: center;
   animation: resultIn 220ms ease-out;
 }
 
 .kicker {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-size: 0.62rem;
 }
 
 .title {
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.4rem;
-  line-height: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  line-height: 1.04;
+  text-transform: uppercase;
 }
 
 .copy {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: var(--text-secondary);
+  font-size: 0.82rem;
 }
 
 .score {
-  margin: 18px 0 0;
-  font-size: 1rem;
+  margin: 14px 0 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .button {
   width: 100%;
-  min-height: 56px;
-  margin-top: 22px;
-  border-radius: 18px;
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.14);
+  min-height: 48px;
+  margin-top: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 @keyframes resultIn {
   from {
     opacity: 0;
-    transform: scale(0.96) translateY(14px);
+    transform: scale(0.97) translateY(10px);
   }
 
   to {

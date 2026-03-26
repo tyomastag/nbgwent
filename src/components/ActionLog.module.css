@@ -1,35 +1,32 @@
 .log {
-  padding: 14px 16px;
-  border-radius: 22px;
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 0 0;
 }
 
 .header {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .label {
   margin: 0;
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
   color: var(--text-muted);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
 }
 
 .items {
   display: grid;
-  gap: 8px;
+  gap: 4px;
 }
 
 .item {
   margin: 0;
-  padding: 10px 12px;
-  border-radius: 14px;
+  padding: 6px 8px;
+  border-left: 1px solid var(--border-strong);
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 0.84rem;
-  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.015);
+  font-size: 0.74rem;
+  line-height: 1.35;
   animation: logIn 180ms ease-out;
 }
 
@@ -49,7 +46,7 @@
 @keyframes logIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
 
   to {
