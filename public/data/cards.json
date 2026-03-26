@@ -1,7 +1,7 @@
 [
   {
     "id": "card_001",
-    "name": "Aiga Melnbārde",
+    "name": "Lady Aiga",
     "title": "Galma Karogu Zīmētāja",
     "image": "/images/char2.png",
     "power": 5,
@@ -13,7 +13,7 @@
   },
   {
     "id": "card_002",
-    "name": "Aleksis Paeglis",
+    "name": "Lord Aleksis",
     "title": "Tirgus Laukuma Bļāvējs",
     "image": "/images/char9.png",
     "power": 6,
@@ -25,7 +25,7 @@
   },
   {
     "id": "card_003",
-    "name": "Anete Anna Krastiņa",
+    "name": "Lady Anete Anna",
     "title": "Pils Kancelejas Sargātāja",
     "image": "/images/char4.png",
     "power": 4,
@@ -37,7 +37,7 @@
   },
   {
     "id": "card_004",
-    "name": "Antra Zuce",
+    "name": "Lady Antra",
     "title": "Karaliskā Gaismas Medniece",
     "image": "/images/char4.png",
     "power": 5,
@@ -49,7 +49,7 @@
   },
   {
     "id": "card_005",
-    "name": "Arturs Mednis",
+    "name": "Lord Artūrs",
     "title": "Muižas Virssaimnieks",
     "image": "/images/char9.png",
     "power": 7,
@@ -61,7 +61,7 @@
   },
   {
     "id": "card_006",
-    "name": "Edgars Orlovskis",
+    "name": "Lord Edžiņš",
     "title": "Pagalma Priekšnieks ar Tūkstoš Uzdevumiem",
     "image": "/images/char6.png",
     "power": 6,
@@ -73,7 +73,7 @@
   },
   {
     "id": "card_007",
-    "name": "Elvita Barkovska",
+    "name": "Lady Elvita",
     "title": "Reklāmu Alķīmiķe",
     "image": "/images/char2.png",
     "power": 7,
@@ -85,7 +85,7 @@
   },
   {
     "id": "card_008",
-    "name": "Ieva Spundzāne",
+    "name": "Lady Ieva",
     "title": "Gājienu Koordinatore",
     "image": "/images/char1.png",
     "power": 6,
@@ -97,7 +97,7 @@
   },
   {
     "id": "card_009",
-    "name": "Jāzeps Bērziņš",
+    "name": "Lord Jāzeps",
     "title": "Divu Objektīvu Burvis",
     "image": "/images/char10.png",
     "power": 6,
@@ -109,7 +109,7 @@
   },
   {
     "id": "card_010",
-    "name": "Kārlis Krēgers",
+    "name": "Lord Kārlis",
     "title": "Mēmu Galma Vezīrs",
     "image": "/images/char7.png",
     "power": 5,
@@ -121,7 +121,7 @@
   },
   {
     "id": "card_011",
-    "name": "Krisjanis Ozols",
+    "name": "Lord Krišjānis",
     "title": "Dzejas Maršals",
     "image": "/images/char8.png",
     "power": 5,
@@ -133,9 +133,9 @@
   },
   {
     "id": "card_012",
-    "name": "Kristaps Filipsons",
+    "name": "Lord Kristaps",
     "title": "Dzelzs Teha Virspavēlnieks",
-    "image": "/images/char7.png",
+    "image": "/images/char5.png",
     "power": 8,
     "abilityType": "morale",
     "abilityValue": 1,
@@ -145,9 +145,9 @@
   },
   {
     "id": "card_013",
-    "name": "Kristjans Nolle",
+    "name": "Lord Kristjans",
     "title": "Koda Arhiburts",
-    "image": "/images/char8.png",
+    "image": "/images/char5.png",
     "power": 7,
     "abilityType": "boost_self",
     "abilityValue": 3,
@@ -157,7 +157,7 @@
   },
   {
     "id": "card_014",
-    "name": "Loreta Lori",
+    "name": "Lady Loreta",
     "title": "Hroniku Rakstvede",
     "image": "/images/char3.png",
     "power": 4,
@@ -169,7 +169,7 @@
   },
   {
     "id": "card_015",
-    "name": "Mārcis Puteklis",
+    "name": "Lord Mārcis",
     "title": "Mākslas un Mehānisko Prātu Burvju Meistars",
     "image": "/images/char8.png",
     "power": 8,
@@ -181,7 +181,7 @@
   },
   {
     "id": "card_016",
-    "name": "Māris Kiseļovs",
+    "name": "Lord Māris",
     "title": "Tīmekļa Cietokšņa Arhitekts",
     "image": "/images/char6.png",
     "power": 7,
@@ -193,7 +193,7 @@
   },
   {
     "id": "card_017",
-    "name": "Rasa Ābele",
+    "name": "Lady Rasa",
     "title": "Sižetu un Uzdevumu Dāma",
     "image": "/images/char1.png",
     "power": 6,
@@ -205,9 +205,9 @@
   },
   {
     "id": "card_018",
-    "name": "Rianda Kirejeva",
+    "name": "Lady Rianda",
     "title": "Rītu Ziņu Hroniste",
-    "image": "/images/char5.png",
+    "image": "/images/char3.png",
     "power": 5,
     "abilityType": "none",
     "abilityValue": 0,
@@ -217,7 +217,7 @@
   },
   {
     "id": "card_019",
-    "name": "Rihards Romush",
+    "name": "Lord Rihards",
     "title": "Sportiskais Attēlu Mednieks",
     "image": "/images/char10.png",
     "power": 6,
@@ -229,7 +229,7 @@
   },
   {
     "id": "card_020",
-    "name": "Terēze Piepiņa",
+    "name": "Lady Terēze",
     "title": "Pils Leģendu Aušana",
     "image": "/images/char3.png",
     "power": 5,
@@ -241,9 +241,9 @@
   },
   {
     "id": "card_021",
-    "name": "Tyoma Shafranko",
+    "name": "Lord Artemijs",
     "title": "Ēnu Dizaina un Dzelzs Prātu Kalējs",
-    "image": "/images/char6.png",
+    "image": "/images/char5.png",
     "power": 7,
     "abilityType": "boost_self",
     "abilityValue": 2,
@@ -253,7 +253,7 @@
   },
   {
     "id": "card_022",
-    "name": "Zigmunds Ziemelis",
+    "name": "Lord Zigmunds",
     "title": "Montāžas Torņa Acīgais Meistars",
     "image": "/images/char7.png",
     "power": 6,

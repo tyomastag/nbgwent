@@ -100,6 +100,9 @@
 
 .hand .media {
   height: 122px;
+  justify-content: flex-start;
+  padding-left: 4px;
+  padding-right: 12px;
 }
 
 .board .media {
@@ -116,6 +119,10 @@
   max-width: calc(100% - 8px);
   max-height: calc(100% - 8px);
   filter: grayscale(1) contrast(1.05);
+}
+
+.hand .image {
+  max-width: calc(100% - 16px);
 }
 
 .fallback {
