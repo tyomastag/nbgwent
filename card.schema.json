@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NBGwent Cards",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "name",
+      "title",
+      "image",
+      "power",
+      "abilityType",
+      "abilityValue",
+      "abilityText",
+      "rarity",
+      "tags"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9_\\-]+$"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "image": {
+        "type": "string",
+        "minLength": 1
+      },
+      "power": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "abilityType": {
+        "type": "string",
+        "enum": [
+          "none",
+          "boost_self",
+          "boost_row_random",
+          "damage_enemy_random",
+          "double_if_last_card",
+          "morale",
+          "spy_light",
+          "comeback",
+          "finisher"
+        ]
+      },
+      "abilityValue": {
+        "type": "number",
+        "minimum": 0
+      },
+      "abilityText": {
+        "type": "string",
+        "minLength": 1
+      },
+      "rarity": {
+        "type": "string",
+        "enum": ["common", "rare", "epic", "legendary"]
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.panel {
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid var(--border-soft);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 55%),
+    rgba(10, 11, 14, 0.92);
+  box-shadow: var(--shadow-card);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.active {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.score {
+  margin: 8px 0 6px;
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.meta {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}

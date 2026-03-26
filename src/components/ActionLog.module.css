@@ -1,0 +1,59 @@
+.log {
+  padding: 14px 16px;
+  border-radius: 22px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.header {
+  margin-bottom: 10px;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.items {
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.84rem;
+  line-height: 1.4;
+  animation: logIn 180ms ease-out;
+}
+
+.positive {
+  color: var(--success);
+}
+
+.negative {
+  color: var(--danger);
+}
+
+.neutral,
+.system {
+  color: var(--text-secondary);
+}
+
+@keyframes logIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

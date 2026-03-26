@@ -1,0 +1,44 @@
+.hand {
+  display: grid;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: end;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.copy {
+  margin: 6px 0 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.count {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 1px 6px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
