@@ -173,7 +173,11 @@ export function GameScreen({ cards }: GameScreenProps) {
   return (
     <section className={styles.screen}>
       <header className={styles.header}>
-        <h1 className={styles.title}>NBGwent</h1>
+        <img
+          className={styles.logo}
+          src="/images/NBGWENT.svg"
+          alt="NBGwent"
+        />
         <p className={styles.meta}>
           First to 2 rounds
         </p>

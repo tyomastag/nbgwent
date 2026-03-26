@@ -231,7 +231,7 @@
     "id": "card_020",
     "name": "Lady Terēze",
     "title": "Pils Leģendu Aušana",
-    "image": "/images/char3.png",
+    "image": "/images/char4.png",
     "power": 5,
     "abilityType": "double_if_last_card",
     "abilityValue": 2,

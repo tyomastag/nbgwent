@@ -7,15 +7,6 @@
   gap: 6px;
 }
 
-.screen::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid rgba(240, 232, 214, 0.08);
-  border-radius: 20px;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -24,13 +15,12 @@
   padding: 4px 4px 0;
 }
 
-.title {
-  margin: 0;
-  font-family: 'Cinzel', 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
-  line-height: 0.95;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.logo {
+  display: block;
+  width: min(176px, 54vw);
+  height: auto;
+  max-height: 28px;
+  object-fit: contain;
 }
 
 .meta {

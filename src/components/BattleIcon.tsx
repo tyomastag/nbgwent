@@ -29,8 +29,25 @@ const iconPaths: Record<BattleIconProps['name'], string> = {
 
 export function BattleIcon({ name, title, size = 16 }: BattleIconProps) {
   return (
-    <span title={title} aria-label={title}>
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <span
+      title={title}
+      aria-label={title}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        lineHeight: 0,
+      }}
+    >
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+        style={{ display: 'block' }}
+      >
         <path
           d={iconPaths[name]}
           stroke="currentColor"

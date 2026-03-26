@@ -66,8 +66,25 @@ const pathByKind = (kind: CardGlyphProps['kind'], value: string) => {
 
 export function CardGlyph({ kind, value, title }: CardGlyphProps) {
   return (
-    <span title={title} aria-label={title}>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <span
+      title={title}
+      aria-label={title}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        lineHeight: 0,
+      }}
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+        style={{ display: 'block' }}
+      >
         <path
           d={pathByKind(kind, value)}
           stroke="currentColor"
