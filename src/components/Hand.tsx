@@ -15,10 +15,13 @@ export function Hand({ cards, highlightIds, selectedCardId, disabled, onCardSele
   return (
     <section className={styles.hand}>
       <div className={styles.header}>
-        <p className={styles.label}>
-          <BattleIcon name="player" title="Player" size={14} />
-          <BattleIcon name="hand" title="Hand" size={14} />
-        </p>
+        <div>
+          <p className={styles.label}>Your hand</p>
+          <p className={styles.copy}>
+            <BattleIcon name="hand" title="Hand" size={12} />
+            Tap a card to preview and play it.
+          </p>
+        </div>
         <p className={styles.count}>{cards.length}</p>
       </div>
 

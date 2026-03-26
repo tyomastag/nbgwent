@@ -19,6 +19,9 @@
   min-height: 14px;
   display: flex;
   align-items: center;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .value {
@@ -27,6 +30,9 @@
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .pips {
@@ -56,16 +62,10 @@
 }
 
 .legend {
-  display: grid;
-  gap: 3px;
+  display: block;
   text-align: right;
   color: var(--text-secondary);
   font-size: 0.68rem;
-}
-
-.legend span {
-  display: inline-flex;
-  justify-content: end;
-  align-items: center;
-  gap: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }

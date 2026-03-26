@@ -11,7 +11,8 @@ export function ActionLog({ entries }: ActionLogProps) {
     <section className={styles.log}>
       <div className={styles.header}>
         <p className={styles.label}>
-          <BattleIcon name="log" title="Action log" size={13} />
+          <BattleIcon name="log" title="Latest actions" size={13} />
+          Latest actions
         </p>
       </div>
 

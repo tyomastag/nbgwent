@@ -9,7 +9,7 @@ import { PassButton } from './PassButton'
 import { RoundTracker } from './RoundTracker'
 import { ScoreBoard } from './ScoreBoard'
 import { chooseAiAction } from '../game/ai'
-import { AI_DELAY_MS, HIGHLIGHT_CLEAR_MS, MAX_ROUNDS, ROUND_BREAK_MS } from '../game/constants'
+import { AI_DELAY_MS, HIGHLIGHT_CLEAR_MS, ROUND_BREAK_MS } from '../game/constants'
 import { createInitialState, gameReducer } from '../game/engine'
 import type { CardInstance } from '../game/types'
 import type { CardDefinition } from '../types/cards'
@@ -140,6 +140,9 @@ export function GameScreen({ cards }: GameScreenProps) {
             : 'AI turn'
 
   const centerSubtitle = state.logs[0]?.message ?? 'Game ready.'
+  const helperSteps = canPlayerAct
+    ? ['Tap a card', 'Press Play', 'Or pass']
+    : ['Wait for AI', 'Watch totals', 'Win 2 rounds']
 
   const openCard = (card: CardInstance, target: SelectionTarget) => {
     setSelectedCardState({ instanceId: card.instanceId, target })
@@ -172,8 +175,7 @@ export function GameScreen({ cards }: GameScreenProps) {
       <header className={styles.header}>
         <h1 className={styles.title}>NBGwent</h1>
         <p className={styles.meta}>
-          <BattleIcon name="round" title={`Best of ${MAX_ROUNDS} rounds`} size={12} />
-          {MAX_ROUNDS}
+          First to 2 rounds
         </p>
       </header>
 
@@ -193,6 +195,11 @@ export function GameScreen({ cards }: GameScreenProps) {
           playerWins={state.player.roundWins}
           aiWins={state.ai.roundWins}
         />
+
+        <div className={styles.helpStrip}>
+          <span>Higher total wins the round</span>
+          <span>Win 2 rounds to win the match</span>
+        </div>
       </div>
 
       <section className={styles.boardStack}>
@@ -214,6 +221,13 @@ export function GameScreen({ cards }: GameScreenProps) {
               {centerTitle}
             </p>
             <p className={styles.turnCopy}>{centerSubtitle}</p>
+            <div className={styles.stepRow}>
+              {helperSteps.map((step) => (
+                <span key={step} className={styles.stepChip}>
+                  {step}
+                </span>
+              ))}
+            </div>
           </div>
 
           <ActionLog entries={state.logs} />

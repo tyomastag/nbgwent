@@ -15,8 +15,8 @@ export function PassButton({ disabled, passed, onClick }: PassButtonProps) {
       disabled={disabled || passed}
       onClick={onClick}
     >
-      <BattleIcon name="pass" title={passed ? 'Passed' : 'Pass'} size={15} />
-      <span>{passed ? 'Passed' : 'Pass'}</span>
+      <BattleIcon name="pass" title={passed ? 'Passed' : 'Pass turn'} size={15} />
+      <span>{passed ? 'Passed' : 'Pass turn'}</span>
     </button>
   )
 }

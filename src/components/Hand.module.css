@@ -14,9 +14,19 @@
 .label {
   margin: 0;
   color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.copy {
+  margin: 2px 0 0;
+  font-size: 0.62rem;
+  color: var(--text-muted);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .count {

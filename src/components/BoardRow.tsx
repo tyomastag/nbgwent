@@ -24,26 +24,21 @@ export function BoardRow({
   alignment,
   onCardSelect,
 }: BoardRowProps) {
+  const sideLabel = side === 'player' ? 'Your board' : 'AI board'
+
   return (
     <section className={`${styles.row} ${alignment === 'top' ? styles.top : styles.bottom}`}>
       <div className={styles.header}>
         <div className={styles.labelGroup}>
-          <p className={styles.label}>
-            <BattleIcon
-              name={side === 'player' ? 'player' : 'opponent'}
-              title={side === 'player' ? 'Player board' : 'Opponent board'}
-              size={14}
-            />
-            <BattleIcon name="board" title="Board" size={14} />
-          </p>
+          <p className={styles.label}>{sideLabel}</p>
           <p className={styles.subtitle}>
             <span title="Cards in hand">
               <BattleIcon name="hand" size={12} />
-              {handCount}
+              Hand {handCount}
             </span>
             <span title="Discard pile">
               <BattleIcon name="deck" size={12} />
-              {discardCount}
+              Discard {discardCount}
             </span>
           </p>
         </div>

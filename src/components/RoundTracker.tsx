@@ -13,10 +13,11 @@ export function RoundTracker({ currentRound, playerWins, aiWins }: RoundTrackerP
   return (
     <section className={styles.tracker}>
       <div className={styles.roundMark}>
-        <p className={styles.label}>
-          <BattleIcon name="round" title="Current round" />
+        <p className={styles.label}>Round</p>
+        <p className={styles.value}>
+          <BattleIcon name="round" title="Current round" size={12} />
+          {toRoman(currentRound)}
         </p>
-        <p className={styles.value}>{toRoman(currentRound)}</p>
       </div>
 
       <div className={styles.pips} aria-label="Round wins">
@@ -37,16 +38,7 @@ export function RoundTracker({ currentRound, playerWins, aiWins }: RoundTrackerP
         ))}
       </div>
 
-      <div className={styles.legend}>
-        <span>
-          <BattleIcon name="player" title="Player round wins" size={13} />
-          {playerWins}
-        </span>
-        <span>
-          <BattleIcon name="opponent" title="AI round wins" size={13} />
-          {aiWins}
-        </span>
-      </div>
+      <div className={styles.legend}>Wins {playerWins} - {aiWins}</div>
     </section>
   )
 }

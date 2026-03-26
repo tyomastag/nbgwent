@@ -12,6 +12,10 @@
   min-height: 14px;
   display: flex;
   align-items: center;
+  gap: 4px;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 
 .items {
