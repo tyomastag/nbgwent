@@ -39,7 +39,7 @@
 
 .score {
   margin: 6px 0 4px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: clamp(1.7rem, 8vw, 2.3rem);
   line-height: 1;
   font-weight: 700;
@@ -111,7 +111,7 @@
   justify-content: center;
   align-items: baseline;
   gap: 5px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: clamp(2rem, 10vw, 3rem);
   line-height: 0.92;
   font-weight: 700;

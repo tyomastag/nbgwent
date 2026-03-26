@@ -32,7 +32,7 @@
 
 .title {
   margin: 0;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: 1.8rem;
   line-height: 1.04;
   text-transform: uppercase;
@@ -46,7 +46,7 @@
 
 .score {
   margin: 14px 0 0;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -60,7 +60,7 @@
   border: 1px solid var(--border-strong);
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

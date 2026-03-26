@@ -26,7 +26,7 @@
 .label {
   margin: 0;
   color: var(--text-primary);
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -49,7 +49,7 @@
 .count {
   min-width: 24px;
   margin: 0;
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel Decorative', serif;
   font-size: 1rem;
   font-weight: 700;
   text-align: right;
