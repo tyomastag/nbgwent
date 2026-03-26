@@ -34,7 +34,7 @@
 
 .hand {
   width: 98px;
-  height: 188px;
+  height: 198px;
   flex: 0 0 98px;
   animation: cardEnter 260ms ease-out both;
   z-index: 1;
@@ -42,15 +42,15 @@
 
 .board {
   width: 88px;
-  height: 164px;
+  height: 172px;
   flex: 0 0 88px;
   animation: boardCardIn 220ms ease-out both;
 }
 
 .modal {
   width: min(100%, 320px);
-  min-height: 462px;
-  max-height: min(88vh, 540px);
+  min-height: 498px;
+  max-height: min(90vh, 586px);
   cursor: default;
 }
 
@@ -99,23 +99,22 @@
 }
 
 .hand .media {
-  height: 102px;
+  height: 122px;
 }
 
 .board .media {
-  height: 92px;
+  height: 112px;
 }
 
 .modal .media {
-  height: 230px;
+  height: 268px;
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  padding: 0 4px;
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 8px);
+  max-height: calc(100% - 8px);
   filter: grayscale(1) contrast(1.05);
 }
 
@@ -239,7 +238,7 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
 }
 
 .footer {
@@ -292,7 +291,7 @@
 
 .board .ability {
   font-size: 0.52rem;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 .board .tag {
