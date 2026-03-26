@@ -57,7 +57,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: url('/images/background2%20(1).png') no-repeat center bottom / 100% auto;
+  background: url('/images/background_bg.png') no-repeat center bottom / 100% auto;
   opacity: 0.84;
 }
 
