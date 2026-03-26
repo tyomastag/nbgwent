@@ -57,14 +57,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    linear-gradient(180deg, rgba(2, 2, 2, 0.96) 0%, rgba(2, 2, 2, 0.92) 32%, rgba(2, 2, 2, 0.84) 58%, rgba(2, 2, 2, 0.72) 100%),
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 26%),
-    url('/images/background%20(1).png');
-  background-repeat: no-repeat;
-  background-position: center top, center top, center bottom;
-  background-size: auto, auto, min(100vw, 560px) auto;
-  opacity: 0.92;
+  background: url('/images/background2%20(1).png') no-repeat center bottom / 100% auto;
+  opacity: 0.84;
 }
 
 body,
