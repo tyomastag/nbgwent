@@ -6,7 +6,7 @@ import styles from './Card.module.css'
 
 interface CardProps {
   card: CardDefinition & { currentPower?: number }
-  variant: 'hand' | 'board' | 'modal'
+  variant: 'hand' | 'board' | 'modal' | 'bonus'
   highlighted?: boolean
   selected?: boolean
   disabled?: boolean

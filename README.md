@@ -57,6 +57,12 @@ Supported abilities:
 - `spy_light` to draw 1 extra card
 - `comeback` to gain a bonus if its owner is behind on score
 - `finisher` to gain a bonus if the opponent already has a high score
+- `slay_strongest` to destroy the strongest enemy card on the board
+
+Special match rule:
+
+- `Lord Artūrs` is pulled out of the main deck and placed at the side for both players as a one-time bonus card
+- once played, he joins the board and defeats the strongest enemy card currently in play
 
 To add a new ability:
 

@@ -6,11 +6,12 @@ interface CardModalProps {
   card: CardInstance | null
   isOpen: boolean
   canPlay: boolean
+  playLabel?: string
   onClose: () => void
   onPlay: () => void
 }
 
-export function CardModal({ card, isOpen, canPlay, onClose, onPlay }: CardModalProps) {
+export function CardModal({ card, isOpen, canPlay, playLabel = 'Play Card', onClose, onPlay }: CardModalProps) {
   if (!isOpen || !card) {
     return null
   }
@@ -25,7 +26,7 @@ export function CardModal({ card, isOpen, canPlay, onClose, onPlay }: CardModalP
           </button>
           {canPlay ? (
             <button type="button" className={styles.playButton} onClick={onPlay}>
-              Play Card
+              {playLabel}
             </button>
           ) : null}
         </div>

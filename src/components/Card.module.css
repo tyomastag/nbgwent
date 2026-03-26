@@ -47,6 +47,13 @@
   animation: boardCardIn 220ms ease-out both;
 }
 
+.bonus {
+  width: 68px;
+  height: 128px;
+  flex: 0 0 68px;
+  animation: boardCardIn 220ms ease-out both;
+}
+
 .modal {
   width: min(100%, 320px);
   min-height: 498px;
@@ -109,6 +116,10 @@
   height: 112px;
 }
 
+.bonus .media {
+  height: 76px;
+}
+
 .modal .media {
   height: 268px;
 }
@@ -167,6 +178,14 @@
   font-family: 'Cinzel', serif;
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+.bonus .powerBadge {
+  top: 5px;
+  left: 5px;
+  min-width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
 }
 
 .content {
@@ -288,17 +307,35 @@
   gap: 4px;
 }
 
+.bonus .content {
+  padding: 5px 5px 6px;
+  gap: 3px;
+}
+
 .board .name {
   font-size: 0.61rem;
+}
+
+.bonus .name {
+  font-size: 0.49rem;
 }
 
 .board .title {
   font-size: 0.5rem;
 }
 
+.bonus .title {
+  font-size: 0.4rem;
+}
+
 .board .ability {
   font-size: 0.52rem;
   -webkit-line-clamp: 1;
+}
+
+.bonus .ability,
+.bonus .tag {
+  display: none;
 }
 
 .board .tag {
@@ -307,6 +344,17 @@
 
 .board .footer {
   min-height: 12px;
+}
+
+.bonus .footer {
+  min-height: 10px;
+}
+
+.bonus .metaIcon,
+.bonus .rarityBadge {
+  width: 12px;
+  height: 12px;
+  flex-basis: 12px;
 }
 
 .modal .content {

@@ -15,7 +15,7 @@ import type { CardInstance } from '../game/types'
 import type { CardDefinition } from '../types/cards'
 import styles from './GameScreen.module.css'
 
-type SelectionTarget = 'playerHand' | 'playerBoard' | 'aiBoard'
+type SelectionTarget = 'playerHand' | 'playerBoard' | 'aiBoard' | 'playerBonus' | 'aiBonus'
 
 interface SelectedCardState {
   instanceId: string
@@ -38,6 +38,10 @@ const findSelectedCard = (state: ReturnType<typeof createInitialState>, selectio
       return state.player.board.find((card) => card.instanceId === selection.instanceId) ?? null
     case 'aiBoard':
       return state.ai.board.find((card) => card.instanceId === selection.instanceId) ?? null
+    case 'playerBonus':
+      return state.player.bonusCard?.instanceId === selection.instanceId ? state.player.bonusCard : null
+    case 'aiBonus':
+      return state.ai.bonusCard?.instanceId === selection.instanceId ? state.ai.bonusCard : null
     default:
       return null
   }
@@ -66,6 +70,11 @@ export function GameScreen({ cards }: GameScreenProps) {
 
       if (decision.type === 'play') {
         dispatch({ type: 'play_card', side: 'ai', instanceId: decision.instanceId })
+        return
+      }
+
+      if (decision.type === 'bonus') {
+        dispatch({ type: 'play_bonus_card', side: 'ai' })
         return
       }
 
@@ -118,9 +127,11 @@ export function GameScreen({ cards }: GameScreenProps) {
   }, [selectedCardState, state])
 
   const selectedCard = findSelectedCard(state, selectedCardState)
-  const isPlayableSelection = selectedCardState?.target === 'playerHand'
+  const isPlayableSelection =
+    selectedCardState?.target === 'playerHand' || selectedCardState?.target === 'playerBonus'
   const canPlayerAct =
     state.phase === 'playing' && state.activePlayer === 'player' && !state.player.passed
+  const playerBonusReady = Boolean(state.player.bonusCard && !state.player.bonusUsed)
 
   const centerTitle =
     state.phase === 'match_over'
@@ -141,7 +152,9 @@ export function GameScreen({ cards }: GameScreenProps) {
 
   const centerSubtitle = state.logs[0]?.message ?? 'Game ready.'
   const helperSteps = canPlayerAct
-    ? ['Tap a card', 'Press Play', 'Or pass']
+    ? playerBonusReady
+      ? ['Tap a card', 'Use Lord Artūrs', 'Or pass']
+      : ['Tap a card', 'Press Play', 'Or pass']
     : ['Wait for AI', 'Watch totals', 'Win 2 rounds']
 
   const openCard = (card: CardInstance, target: SelectionTarget) => {
@@ -153,7 +166,11 @@ export function GameScreen({ cards }: GameScreenProps) {
       return
     }
 
-    dispatch({ type: 'play_card', side: 'player', instanceId: selectedCard.instanceId })
+    if (selectedCardState?.target === 'playerBonus') {
+      dispatch({ type: 'play_bonus_card', side: 'player' })
+    } else {
+      dispatch({ type: 'play_card', side: 'player', instanceId: selectedCard.instanceId })
+    }
     setSelectedCardState(null)
   }
 
@@ -191,7 +208,13 @@ export function GameScreen({ cards }: GameScreenProps) {
           aiDeckCount={state.ai.deck.length}
           playerHandCount={state.player.hand.length}
           aiHandCount={state.ai.hand.length}
+          playerBonusCard={state.player.bonusCard}
+          aiBonusCard={state.ai.bonusCard}
+          playerBonusUsed={state.player.bonusUsed}
+          aiBonusUsed={state.ai.bonusUsed}
           activePlayer={state.activePlayer}
+          onPlayerBonusSelect={(card) => openCard(card, 'playerBonus')}
+          onAiBonusSelect={(card) => openCard(card, 'aiBonus')}
         />
 
         <RoundTracker
@@ -202,7 +225,7 @@ export function GameScreen({ cards }: GameScreenProps) {
 
         <div className={styles.helpStrip}>
           <span>Higher total wins the round</span>
-          <span>Win 2 rounds to win the match</span>
+          <span>Lord Artūrs is a one-time side bonus</span>
         </div>
       </div>
 
@@ -271,6 +294,7 @@ export function GameScreen({ cards }: GameScreenProps) {
         card={selectedCard}
         isOpen={Boolean(selectedCard)}
         canPlay={Boolean(selectedCard && isPlayableSelection && canPlayerAct)}
+        playLabel={selectedCardState?.target === 'playerBonus' ? 'Use Bonus Card' : 'Play Card'}
         onClose={() => setSelectedCardState(null)}
         onPlay={handlePlayFromModal}
       />

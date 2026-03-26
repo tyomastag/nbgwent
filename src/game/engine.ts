@@ -1,4 +1,11 @@
-import { FINISHER_THRESHOLD, HAND_SIZE, LOG_LIMIT, MAX_ROUNDS, ROUND_WINS_TO_WIN } from './constants'
+import {
+  FINISHER_THRESHOLD,
+  HAND_SIZE,
+  LOG_LIMIT,
+  LORD_ARTURS_CARD_ID,
+  MAX_ROUNDS,
+  ROUND_WINS_TO_WIN,
+} from './constants'
 import type { CardInstance, GameAction, GameState, LogEntry, LogTone, PlayerState, Side } from './types'
 import type { AbilityType, CardDefinition } from '../types/cards'
 
@@ -33,6 +40,7 @@ const clonePlayerState = (player: PlayerState): PlayerState => ({
   hand: player.hand.map(cloneCard),
   board: player.board.map(cloneCard),
   discard: player.discard.map(cloneCard),
+  bonusCard: player.bonusCard ? cloneCard(player.bonusCard) : null,
 })
 
 const shuffle = <T,>(items: T[]) => {
@@ -70,7 +78,9 @@ const createCardInstance = (card: CardDefinition, side: Side, index: number): Ca
 })
 
 const createPlayerState = (cards: CardDefinition[], side: Side): PlayerState => {
-  const deck = shuffle(cards.map((card, index) => createCardInstance(card, side, index)))
+  const bonusDefinition = cards.find((card) => card.id === LORD_ARTURS_CARD_ID) ?? null
+  const baseDeckCards = cards.filter((card) => card.id !== LORD_ARTURS_CARD_ID)
+  const deck = shuffle(baseDeckCards.map((card, index) => createCardInstance(card, side, index)))
   const hand = deck.slice(0, HAND_SIZE)
 
   return {
@@ -78,21 +88,30 @@ const createPlayerState = (cards: CardDefinition[], side: Side): PlayerState => 
     hand,
     board: [],
     discard: [],
+    bonusCard: bonusDefinition ? createCardInstance(bonusDefinition, side, 999) : null,
+    bonusUsed: false,
     passed: false,
     roundWins: 0,
     score: 0,
   }
 }
 
-export const createInitialState = (cards: CardDefinition[]): GameState => ({
-  phase: 'playing',
-  roundNumber: 1,
-  activePlayer: 'player',
-  player: createPlayerState(cards, 'player'),
-  ai: createPlayerState(cards, 'ai'),
-  logs: [makeLog('Match started. You and the AI drew 10 cards each.', 'system')],
-  highlightIds: [],
-})
+export const createInitialState = (cards: CardDefinition[]): GameState => {
+  const hasLordArturs = cards.some((card) => card.id === LORD_ARTURS_CARD_ID)
+
+  return {
+    phase: 'playing',
+    roundNumber: 1,
+    activePlayer: 'player',
+    player: createPlayerState(cards, 'player'),
+    ai: createPlayerState(cards, 'ai'),
+    logs: [
+      makeLog('Match started. You and the AI drew 10 cards each.', 'system'),
+      ...(hasLordArturs ? [makeLog('Lord Artūrs waits at each side as a one-time bonus card.', 'system')] : []),
+    ],
+    highlightIds: [],
+  }
+}
 
 const drawCard = (actor: PlayerState) => {
   const [drawnCard, ...restDeck] = actor.deck
@@ -105,6 +124,37 @@ const drawCard = (actor: PlayerState) => {
   actor.hand = [...actor.hand, drawnCard]
 
   return drawnCard
+}
+
+const getStrongestCard = (cards: CardInstance[]) =>
+  cards
+    .slice()
+    .sort((left, right) => right.currentPower - left.currentPower || left.instanceId.localeCompare(right.instanceId))[0]
+
+const removeStrongestEnemyCard = (
+  opponent: PlayerState,
+  playedCard: CardInstance,
+  logs: PendingLog[],
+  highlightIds: Set<string>,
+) => {
+  const target = getStrongestCard(opponent.board)
+
+  if (!target) {
+    logs.push({
+      message: `${playedCard.name} enters as a royal bonus, but no enemy card is on the board.`,
+      tone: 'neutral',
+    })
+    return
+  }
+
+  opponent.board = opponent.board.filter((card) => card.instanceId !== target.instanceId)
+  opponent.discard = [...opponent.discard, target]
+  highlightIds.add(playedCard.instanceId)
+  highlightIds.add(target.instanceId)
+  logs.push({
+    message: `${playedCard.name} defeats ${target.name}, the strongest enemy on the board.`,
+    tone: 'negative',
+  })
 }
 
 const abilityResolvers: Record<AbilityType, (context: AbilityContext) => void> = {
@@ -223,6 +273,9 @@ const abilityResolvers: Record<AbilityType, (context: AbilityContext) => void> =
       tone: 'positive',
     })
   },
+  slay_strongest: ({ opponent, playedCard, logs, highlightIds }) => {
+    removeStrongestEnemyCard(opponent, playedCard, logs, highlightIds)
+  },
 }
 
 const getZones = (state: GameState, side: Side) =>
@@ -230,13 +283,15 @@ const getZones = (state: GameState, side: Side) =>
     ? { actor: clonePlayerState(state.player), opponent: clonePlayerState(state.ai) }
     : { actor: clonePlayerState(state.ai), opponent: clonePlayerState(state.player) }
 
+const hasPlayableCards = (player: PlayerState) => player.hand.length > 0 || (!!player.bonusCard && !player.bonusUsed)
+
 const shouldEndRound = (player: PlayerState, ai: PlayerState) =>
-  (player.passed || player.hand.length === 0) && (ai.passed || ai.hand.length === 0)
+  (player.passed || !hasPlayableCards(player)) && (ai.passed || !hasPlayableCards(ai))
 
 const getNextActivePlayer = (side: Side, actor: PlayerState, opponent: PlayerState): Side => {
   const opposite = side === 'player' ? 'ai' : 'player'
-  const actorDone = actor.passed || actor.hand.length === 0
-  const opponentDone = opponent.passed || opponent.hand.length === 0
+  const actorDone = actor.passed || !hasPlayableCards(actor)
+  const opponentDone = opponent.passed || !hasPlayableCards(opponent)
 
   if (!actorDone && opponentDone) {
     return side
@@ -361,6 +416,64 @@ const resolvePlayCard = (state: GameState, side: Side, instanceId: string): Game
   }
 }
 
+const resolvePlayBonusCard = (state: GameState, side: Side): GameState => {
+  if (state.phase !== 'playing' || state.activePlayer !== side) {
+    return state
+  }
+
+  const { actor, opponent } = getZones(state, side)
+  const playedCard = actor.bonusCard
+
+  if (!playedCard || actor.bonusUsed) {
+    return state
+  }
+
+  actor.bonusCard = null
+  actor.bonusUsed = true
+
+  const logs: PendingLog[] = [
+    {
+      message: `${playedCard.name} joins the battle from the bonus slot.`,
+      tone: 'system',
+    },
+  ]
+  const highlightIds = new Set<string>([playedCard.instanceId])
+
+  actor.board = [...actor.board, playedCard]
+
+  abilityResolvers[playedCard.abilityType]({
+    actor,
+    opponent,
+    playedCard,
+    prePlayActorScore: actor.score,
+    prePlayOpponentScore: opponent.score,
+    logs,
+    highlightIds,
+  })
+
+  refreshScores(actor, opponent)
+
+  if (shouldEndRound(side === 'player' ? actor : opponent, side === 'player' ? opponent : actor)) {
+    const player = side === 'player' ? actor : opponent
+    const ai = side === 'player' ? opponent : actor
+
+    return finalizeRound(state, player, ai)
+  }
+
+  const nextActivePlayer = getNextActivePlayer(side, actor, opponent)
+  const player = side === 'player' ? actor : opponent
+  const ai = side === 'player' ? opponent : actor
+
+  return {
+    ...state,
+    player,
+    ai,
+    activePlayer: nextActivePlayer,
+    logs: mergeLogs(state.logs, logs),
+    highlightIds: [...highlightIds],
+  }
+}
+
 const resolvePassTurn = (state: GameState, side: Side): GameState => {
   if (state.phase !== 'playing' || state.activePlayer !== side) {
     return state
@@ -441,6 +554,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
   switch (action.type) {
     case 'play_card':
       return resolvePlayCard(state, action.side, action.instanceId)
+    case 'play_bonus_card':
+      return resolvePlayBonusCard(state, action.side)
     case 'pass_turn':
       return resolvePassTurn(state, action.side)
     case 'next_round':

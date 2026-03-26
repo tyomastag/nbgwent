@@ -1,7 +1,12 @@
 import { FINISHER_THRESHOLD } from './constants'
 import type { CardInstance, GameState } from './types'
 
-export type AiDecision = { type: 'play'; instanceId: string } | { type: 'pass' }
+export type AiDecision = { type: 'play'; instanceId: string } | { type: 'bonus' } | { type: 'pass' }
+
+const getStrongestEnemy = (state: GameState) =>
+  state.player.board
+    .slice()
+    .sort((left, right) => right.currentPower - left.currentPower || left.instanceId.localeCompare(right.instanceId))[0]
 
 const estimateProjectedGain = (card: CardInstance, state: GameState) => {
   let gain = card.currentPower
@@ -57,8 +62,28 @@ const estimateRating = (card: CardInstance, state: GameState) => {
 }
 
 export const chooseAiAction = (state: GameState): AiDecision => {
-  if (state.phase !== 'playing' || state.ai.passed || state.ai.hand.length === 0) {
+  const hasBonusCard = Boolean(state.ai.bonusCard && !state.ai.bonusUsed)
+  const hasAnyPlay = state.ai.hand.length > 0 || hasBonusCard
+
+  if (state.phase !== 'playing' || state.ai.passed || !hasAnyPlay) {
     return { type: 'pass' }
+  }
+
+  const strongestEnemy = getStrongestEnemy(state)
+  const bonusCard = state.ai.bonusCard
+
+  if (hasBonusCard && bonusCard) {
+    const bonusSwing = bonusCard.power + (strongestEnemy?.currentPower ?? 0)
+    const canFlipTheRound = state.ai.score + bonusSwing > state.player.score
+    const isBigThreat = (strongestEnemy?.currentPower ?? 0) >= 8
+    const isGoodCatchUp = state.ai.score < state.player.score && bonusSwing >= 11
+
+    if (
+      (strongestEnemy && (isBigThreat || isGoodCatchUp || (state.player.passed && canFlipTheRound))) ||
+      (!strongestEnemy && state.player.passed && state.ai.score + bonusCard.power > state.player.score)
+    ) {
+      return { type: 'bonus' }
+    }
   }
 
   const scoreLead = state.ai.score - state.player.score

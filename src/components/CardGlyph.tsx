@@ -41,6 +41,7 @@ const abilityPathByType: Record<AbilityType, string> = {
   spy_light: 'M12 4c4.4 0 8 3.6 8 8h-3l4 5 4-5h-3c0-5.5-4.5-10-10-10S2 6.5 2 12h2c0-4.4 3.6-8 8-8z',
   comeback: 'M5 16l4-4 3 3 7-7 1 1-8 8-3-3-3 3z',
   finisher: 'M12 3l1.7 5.3H19l-4.3 3.1L16.4 17 12 13.9 7.6 17l1.7-5.6L5 8.3h5.3L12 3z',
+  slay_strongest: 'M6 6l12 12M18 6L6 18M12 3l1.6 3.4 3.7.5-2.7 2.7.6 3.8-3.2-1.8-3.2 1.8.6-3.8L6.7 6.9l3.7-.5L12 3z',
 }
 
 const rarityPathByValue: Record<CardRarity, string> = {

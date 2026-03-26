@@ -6,3 +6,4 @@ export const LOG_LIMIT = 7
 export const AI_DELAY_MS = 850
 export const ROUND_BREAK_MS = 1800
 export const HIGHLIGHT_CLEAR_MS = 1100
+export const LORD_ARTURS_CARD_ID = 'card_005'

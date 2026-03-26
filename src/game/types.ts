@@ -15,6 +15,8 @@ export interface PlayerState {
   hand: CardInstance[]
   board: CardInstance[]
   discard: CardInstance[]
+  bonusCard: CardInstance | null
+  bonusUsed: boolean
   passed: boolean
   roundWins: number
   score: number
@@ -41,6 +43,7 @@ export interface GameState {
 
 export type GameAction =
   | { type: 'play_card'; side: Side; instanceId: string }
+  | { type: 'play_bonus_card'; side: Side }
   | { type: 'pass_turn'; side: Side }
   | { type: 'next_round' }
   | { type: 'reset_match'; cards: CardDefinition[] }

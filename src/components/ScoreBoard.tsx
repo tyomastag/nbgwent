@@ -1,6 +1,7 @@
 import { useAnimatedNumber } from '../hooks/useAnimatedNumber'
-import type { Side } from '../game/types'
+import type { CardInstance, Side } from '../game/types'
 import { BattleIcon } from './BattleIcon'
+import { Card } from './Card'
 import styles from './ScoreBoard.module.css'
 
 interface ScoreBoardProps {
@@ -10,7 +11,13 @@ interface ScoreBoardProps {
   aiDeckCount: number
   playerHandCount: number
   aiHandCount: number
+  playerBonusCard: CardInstance | null
+  aiBonusCard: CardInstance | null
+  playerBonusUsed: boolean
+  aiBonusUsed: boolean
   activePlayer: Side
+  onPlayerBonusSelect: (card: CardInstance) => void
+  onAiBonusSelect: (card: CardInstance) => void
 }
 
 export function ScoreBoard({
@@ -20,7 +27,13 @@ export function ScoreBoard({
   aiDeckCount,
   playerHandCount,
   aiHandCount,
+  playerBonusCard,
+  aiBonusCard,
+  playerBonusUsed,
+  aiBonusUsed,
   activePlayer,
+  onPlayerBonusSelect,
+  onAiBonusSelect,
 }: ScoreBoardProps) {
   const animatedPlayerScore = useAnimatedNumber(playerScore)
   const animatedAiScore = useAnimatedNumber(aiScore)
@@ -40,6 +53,19 @@ export function ScoreBoard({
             <BattleIcon name="deck" title="Cards in deck" size={13} />
             {aiDeckCount}
           </span>
+        </div>
+        <div className={styles.bonusArea}>
+          <p className={styles.bonusLabel}>Bonus</p>
+          {aiBonusCard ? (
+            <Card
+              card={aiBonusCard}
+              variant="bonus"
+              disabled={aiBonusUsed}
+              onClick={() => onAiBonusSelect(aiBonusCard)}
+            />
+          ) : (
+            <div className={styles.bonusPlaceholder}>{aiBonusUsed ? 'Used' : 'Ready'}</div>
+          )}
         </div>
       </article>
 
@@ -65,6 +91,19 @@ export function ScoreBoard({
             <BattleIcon name="deck" title="Cards in deck" size={13} />
             {playerDeckCount}
           </span>
+        </div>
+        <div className={styles.bonusArea}>
+          <p className={styles.bonusLabel}>Bonus</p>
+          {playerBonusCard ? (
+            <Card
+              card={playerBonusCard}
+              variant="bonus"
+              disabled={playerBonusUsed}
+              onClick={() => onPlayerBonusSelect(playerBonusCard)}
+            />
+          ) : (
+            <div className={styles.bonusPlaceholder}>{playerBonusUsed ? 'Used' : 'Ready'}</div>
+          )}
         </div>
       </article>
     </section>

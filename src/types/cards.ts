@@ -8,6 +8,7 @@ export type AbilityType =
   | 'spy_light'
   | 'comeback'
   | 'finisher'
+  | 'slay_strongest'
 
 export type CardRarity = 'common' | 'rare' | 'epic' | 'legendary'
 

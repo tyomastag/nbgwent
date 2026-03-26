@@ -50,7 +50,8 @@
           "morale",
           "spy_light",
           "comeback",
-          "finisher"
+          "finisher",
+          "slay_strongest"
         ]
       },
       "abilityValue": {

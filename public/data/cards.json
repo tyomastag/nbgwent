@@ -53,11 +53,11 @@
     "title": "Muižas Virssaimnieks",
     "image": "/images/char9.png",
     "power": 7,
-    "abilityType": "boost_self",
-    "abilityValue": 2,
-    "abilityText": "Ienāk ar atslēgu saišķi, salabo pusi karaļvalsts un uzreiz iegūst +2 spēku.",
+    "abilityType": "slay_strongest",
+    "abilityValue": 0,
+    "abilityText": "Stāv malā kā vienreizējs bonuss un, uzlikts uz galda, nokauj pretinieka stiprāko kārti.",
     "rarity": "epic",
-    "tags": ["house", "master", "fixer"]
+    "tags": ["house", "master", "bonus"]
   },
   {
     "id": "card_006",
